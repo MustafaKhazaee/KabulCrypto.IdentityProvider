@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option csharp_namespace = "KabulCrypto.IdentityProvider";
+
+package authentication;
+
+service Authentication {
+	rpc Authenticate (AuthenticateRequest) returns (AuthenticateResponse);
+	rpc RegisterUser (RegisterUserRequeset) returns (RegisterUserResponse);
+}
+
+message AuthenticateRequest {
+	string username = 1;
+	string password = 2;
+}
+
+message AuthenticateResponse {
+	bool isAutheticated = 1;
+	string accessToken = 2;
+	string refreshToken = 3;
+	string errorMessage = 4;
+}
+
+message RegisterUserRequeset {
+	string username = 1;
+	string password = 2;
+	string email = 3;
+}
+
+message RegisterUserResponse {
+	bool isRegistered = 1;
+	string message = 2;
+}
